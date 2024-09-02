@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-const port = 3001;
+const port = 3005;
 const mongoose = require("mongoose");
 app.use(express.urlencoded({ extended: true }));
-const MyData = require("./Models/myDataSchema");
+const User = require("./Models/AddUserSchema");
 app.use(express.static('public'))
 app.set("view engine", "ejs");
 // Auto ref
@@ -43,6 +43,32 @@ app.get("/user/add.html", (req, res) => {
   res.render("user/add");
 
 });
+
+
+
+
+
+// post Request
+ 
+app.post("/user/add.html", (req, res) => {
+
+  console.log(req.body);
+  const user = new User(req.body);
+
+   user.save()
+    .then( result => {
+      res.redirect("/");
+    })
+    .catch( err => {
+      console.log(err); 
+    });
+});
+
+
+
+
+
+
 mongoose
   .connect(
     "mongodb+srv://Mostafa:sBmKCieTDlV6zeSf@cluster0.xr7ev.mongodb.net/all-data?retryWrites=true&w=majority&appName=Cluster0"

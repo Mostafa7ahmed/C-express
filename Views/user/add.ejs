@@ -126,12 +126,13 @@
       <section class="w-100">
         <%- include('../Components/navbar.ejs') %>
 
-        <form class="mx-0 row gx-3 gy-4 mt-3">
+        <form class="mx-0 row gx-3 gy-4 mt-3"  method="post" action="/user/add.html">
           <div class="col-md-6">
             <label for="inputfirstName4" class="form-label">First Name:</label>
             <input
-              placeholder="Ali..."
+              placeholder="Enter FName..."
               type="text"
+              name="fristName"
               class="form-control"
               id="inputfirstName4"
             />
@@ -139,7 +140,9 @@
           <div class="col-md-6">
             <label for="inputlastName4" class="form-label">Last Name:</label>
             <input
-              placeholder="Hassan..."
+              placeholder="Enter Lname..."
+              name="lastName"
+
               type="text"
               class="form-control"
               id="inputlastName4"
@@ -151,6 +154,7 @@
             <input
               placeholder="ali@gmail.com"
               type="email"
+              name="email"
               class="form-control"
               id="inputemail4"
             />
@@ -159,7 +163,8 @@
             <label for="inputtele4" class="form-label">Telephone:</label>
             <input
               placeholder="011987899"
-              type="number"
+              type="text"
+              name="phoneNumber"
               class="form-control"
               id="inputtele4"
             />
@@ -171,6 +176,7 @@
               <input
                 placeholder="Your Age: ..."
                 type="number"
+                name="age"
                 class="form-control"
                 id="inputage4"
               />
@@ -180,8 +186,8 @@
           <div>
             <div class="col-md-6">
               <label for="inputCountry" class="form-label">Country:</label>
-              <select id="inputCountry" class="form-select">
-                <option selected hidden disabled>Choose here ...</option>
+              <select id="inputCountry" class="form-select" name="country">
+                <option selected hidden disable d>Choose here ...</option>
 
                 <option>Morocco</option>
                 <option>Egypt</option>
@@ -192,9 +198,9 @@
           <div>
             <div class="col-md-6">
               <label for="inputGender" class="form-label">Gender:</label>
-              <select id="inputGender" class="form-select">
+              <select id="inputGender" class="form-select" name="gender">
                 <option selected hidden disabled>Choose here ...</option>
-                <option>Male</option>
+                <option >Male</option>
                 <option>Female</option>
               </select>
             </div>
