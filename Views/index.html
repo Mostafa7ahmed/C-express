@@ -28,7 +28,16 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            margin-top: 20px;
 
+        }
+
+
+        .formInput{
+            display: flex;
+            gap: 40px;
+            flex-direction: column;
+            width: 400px;
         }
     </style>
 </head>
@@ -37,12 +46,27 @@
 
 
 
-    <div class="contanier">
-        <input type="text" name="" id="">
-        <br>
-
-        <button>Send Data</button>
-    </div>
+    <form action="/" method="post">
+              <div class="formInput">
+                <label for="title">Article title:</label>
+                <input type="text" id="title" name="title" required>
+             
+              </div>
+     
+          <div class="formInput">
+            <label for="summary">Article summary:</label>
+            <input type="text" id="summary" name="summary" required>
+         
+          </div>
+     
+       <div class="formInput">
+        <label for="body">Article body:</label>
+        <textarea id="body" name="body" required></textarea>
+       </div>
+     
+     
+        <button class="create">Create</button>
+    </form>
 </body>
 
 </html>
