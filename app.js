@@ -4,6 +4,7 @@ const port = 3005;
 const mongoose = require("mongoose");
 app.use(express.urlencoded({ extended: true }));
 const MyData = require("./Models/myDataSchema");
+app.use(express.static('public'))
 app.set("view engine", "ejs");
 app.get("/", (req, res) => {
   MyData.find()
@@ -42,4 +43,24 @@ app.post("/", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+});
+
+
+
+
+// Auto ref
+
+const path = require("path");
+const livereload = require("livereload");
+const liveReloadServer = livereload.createServer();
+liveReloadServer.watch(path.join(__dirname, 'public'));
+ 
+ 
+const connectLivereload = require("connect-livereload");
+app.use(connectLivereload());
+ 
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
 });

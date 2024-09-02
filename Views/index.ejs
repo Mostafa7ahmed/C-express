@@ -5,46 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= mytitle %></title>
+    <link rel="stylesheet" href="mystyle.css">
 
     <style>
     
      
-
-         input {
-            padding: 10px;
-            border: 1px #585858 solid;
-            border-radius: 5px;
-            outline: none;
-            margin-bottom: 20px;
-
-        }
-
-         button {
-            padding: 10px;
-            background-color: #585858;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 20px;
-
-        }
-
-
-        .formInput{
-            display: flex;
-            gap: 40px;
-            flex-direction: column;
-            width: 400px;
-        }
     </style>
 </head>
 
 <body>
 
 
-
+      <h2>adasdaasda</h2>
     <form action="/" method="post">
               <div class="formInput">
                 <label for="title">Article title:</label>
@@ -71,8 +43,8 @@
 
     <% const name ="sasa"  %>
 
-    <%= arr[0].title  %>
-    <%= arr[0].body  %>
+    <%= arr.at(-1).title  %>
+    <%= arr.at(-1).body  %>
 
 </body>
 
