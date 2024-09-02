@@ -1,24 +1,48 @@
 const express = require("express");
 const app = express();
-const port = 3005;
+const port = 3001;
 const mongoose = require("mongoose");
 app.use(express.urlencoded({ extended: true }));
 const MyData = require("./Models/myDataSchema");
 app.use(express.static('public'))
 app.set("view engine", "ejs");
+// Auto ref
+const path = require("path");
+const livereload = require("livereload");
+const liveReloadServer = livereload.createServer();
+liveReloadServer.watch(path.join(__dirname, 'public'));
+const connectLivereload = require("connect-livereload");
+app.use(connectLivereload());
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+});
+
+//End 
 app.get("/", (req, res) => {
-  MyData.find()
-    .then((data) => {
-      res.render("index", { mytitle: "home page" , arr:data });
 
-    })
-    .catch((err) => {console.error(err)});
+  res.render("index", { mytitle: "home page" });
+
 });
 
-app.get("/send.html", (req, res) => {
-  res.send("<h1>تم الارسال </h1>");
+app.get("/user/edit.html", (req, res) => {
+
+  res.render("user/edit");
+
 });
 
+app.get("/user/view.html", (req, res) => {
+
+  res.render("user/view");
+
+}); 
+
+app.get("/user/add.html", (req, res) => {
+
+  res.render("user/add");
+
+});
 mongoose
   .connect(
     "mongodb+srv://Mostafa:sBmKCieTDlV6zeSf@cluster0.xr7ev.mongodb.net/all-data?retryWrites=true&w=majority&appName=Cluster0"
@@ -31,36 +55,3 @@ mongoose
   .catch((err) => {
     console.error("Database connection error:", err);
   });
-
-app.post("/", (req, res) => {
-  const mydata = new MyData(req.body);
-  console.log(req.body);
-  mydata
-    .save()
-    .then(() => {
-      res.redirect("/send.html");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-
-
-
-// Auto ref
-
-const path = require("path");
-const livereload = require("livereload");
-const liveReloadServer = livereload.createServer();
-liveReloadServer.watch(path.join(__dirname, 'public'));
- 
- 
-const connectLivereload = require("connect-livereload");
-app.use(connectLivereload());
- 
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => {
-    liveReloadServer.refresh("/");
-  }, 100);
-});
