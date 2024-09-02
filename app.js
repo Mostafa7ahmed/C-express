@@ -22,7 +22,14 @@ liveReloadServer.server.once("connection", () => {
 //End 
 app.get("/", (req, res) => {
 
-  res.render("index", { mytitle: "home page" });
+  User.find()
+    .then(results => {
+
+      res.render("index", { arrUsers: results });
+
+    })
+    .catch(err => { })
+
 
 });
 
@@ -63,7 +70,6 @@ app.post("/user/add.html", (req, res) => {
       console.log(err); 
     });
 });
-
 
 
 
